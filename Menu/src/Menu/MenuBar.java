@@ -1,5 +1,8 @@
 package Menu;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,7 +33,19 @@ public class MenuBar {
 		
 		// Menu Items
 		JMenu menu=new JMenu("Menu Options");
+		
+		// DATE TIME
 		JMenuItem dateTime=new JMenuItem("Date & Time");
+		dateTime.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.print("DateTime");
+				
+			}
+		});
+		
+		
 		JMenuItem print=new JMenuItem("Print Date & Time");
 		JMenuItem color=new JMenuItem("Change Frame to Green Hue");
 		JMenuItem exit=new JMenuItem("Exit");
