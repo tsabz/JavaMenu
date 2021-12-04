@@ -3,9 +3,13 @@ package Menu;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import java.util.Random;
+import java.awt.Container;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 public class MenuBar {
 
@@ -26,13 +31,12 @@ public class MenuBar {
 		JTextField textBox = new JTextField(); // creates text field
 		BoxLayout boxLayout=new BoxLayout(jPanel, BoxLayout.Y_AXIS); // creates box layout
 		EmptyBorder emptyBorder=new EmptyBorder(20,20,20,20); // creates empty border 
-		JLabel simpleLabel=new JLabel("Menu Bar Options"); // creates jLabel
-		
+		JLabel simpleLabel=new JLabel("Welcome to the Menu Bar!"); // creates jLabel
 		
 		jPanel.add(simpleLabel);
 		jPanel.setBorder(emptyBorder);
 		jPanel.setLayout(boxLayout);
-		
+		jPanel.setBackground(Color.blue);
 		
 		// Menu Bar Code
 		JMenuBar jMenuBar=new JMenuBar();
@@ -43,7 +47,6 @@ public class MenuBar {
 		jFrame.setJMenuBar(jMenuBar);
 		textBox.setPreferredSize(new Dimension(200, 20));
 		textBox.setEditable(true);
-		
 		
 		// ***** DATE TIME ***** // 
 		
@@ -61,19 +64,45 @@ public class MenuBar {
 		});
 		
 		// ***** Print Date & Time ***** //
+		
 		JMenuItem print=new JMenuItem("Print Date & Time");
 		print.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Print Date Time Selected"); // testing comments
+				String userText = textBox.getText();
+
+				try(FileWriter writer=new FileWriter("Log.txt"); 
+					BufferedWriter bw=new BufferedWriter(writer)) {
+					
+					bw.write(userText);
+				} catch (IOException e1) {
+					System.err.format("IOException: %s%n", e1);
+				}
 				
+			}
+		});
+		
+		// ***** Color ***** //
+		
+		JMenuItem color=new JMenuItem("Change Frame to Green Hue");
+		color.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Random Green color selected"); // testing comments
+				Random rand = new Random();
+				int r = rand.nextInt(255);
+				int g = rand.nextInt(255);
+				int b = rand.nextInt(255);
+				
+//				int randomColor = Color.rgb(r,g,b);
+				jPanel.setBackground(Color.GREEN);
 			}
 		});
 		
 		
 		
-		JMenuItem color=new JMenuItem("Change Frame to Green Hue");
 		JMenuItem exit=new JMenuItem("Exit");
 		
 		
@@ -96,3 +125,13 @@ public class MenuBar {
 	}
 
 }
+
+
+//References
+
+// https://mkyong.com/java/how-to-write-to-file-in-java-bufferedwriter-example/
+// https://www.youtube.com/watch?v=mhPGxzY8zW0
+
+
+
+
