@@ -36,7 +36,7 @@ public class MenuBar {
 		jPanel.add(simpleLabel);
 		jPanel.setBorder(emptyBorder);
 		jPanel.setLayout(boxLayout);
-		jPanel.setBackground(Color.blue);
+//		jPanel.setBackground(Color.blue);
 		
 		// Menu Bar Code
 		JMenuBar jMenuBar=new JMenuBar();
@@ -92,18 +92,27 @@ public class MenuBar {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Random Green color selected"); // testing comments
 				Random rand = new Random();
-				int r = rand.nextInt(255);
-				int g = rand.nextInt(255);
-				int b = rand.nextInt(255);
+				int r = rand.nextInt(60);
+				int g = rand.nextInt(220);
+				int b = rand.nextInt(60);
 				
-//				int randomColor = Color.rgb(r,g,b);
-				jPanel.setBackground(Color.GREEN);
+				Color c=new Color(r,g,b);
+				jPanel.setBackground(c);
 			}
 		});
 		
-		
+		// ***** Exit ***** //
 		
 		JMenuItem exit=new JMenuItem("Exit");
+		
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
 		
 		
 		// ADDING MENU OPTIONS TO MENU
