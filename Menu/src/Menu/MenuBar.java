@@ -24,11 +24,13 @@ import java.awt.Color;
 public class MenuBar {
 
 	public static void main(String[] args) {
+		JTextField textBox; // adds textBox to global scope
+		
 		System.out.println("Program Starts"); // testing comments
 		
 		JFrame jFrame=new JFrame("Menu Bar"); // creates JFrame
 		JPanel jPanel=new JPanel(); // creates panel 
-		JTextField textBox = new JTextField(); // creates text field
+		textBox = new JTextField(); // creates text field
 		BoxLayout boxLayout=new BoxLayout(jPanel, BoxLayout.Y_AXIS); // creates box layout
 		EmptyBorder emptyBorder=new EmptyBorder(20,20,20,20); // creates empty border 
 		JLabel simpleLabel=new JLabel("Welcome to the Menu Bar!"); // creates jLabel
@@ -40,7 +42,7 @@ public class MenuBar {
 		
 		// Menu Bar Code
 		JMenuBar jMenuBar=new JMenuBar();
-		JMenu menu=new JMenu("Menu Options");
+		JMenu menu=new JMenu("Click for Menu");
 		
 		
 		// Setting into jFrame
@@ -73,7 +75,7 @@ public class MenuBar {
 				System.out.println("Print Date Time Selected"); // testing comments
 				String userText = textBox.getText();
 
-				try(FileWriter writer=new FileWriter("Log.txt"); 
+				try(FileWriter writer=new FileWriter("log.txt"); 
 					BufferedWriter bw=new BufferedWriter(writer)) {
 					
 					bw.write(userText);
@@ -127,7 +129,7 @@ public class MenuBar {
 		// End Code 
 		
 		jFrame.add(jPanel); // adds panel to jFrame
-		jFrame.setSize(300, 300); // sets size of frame 
+		jFrame.setSize(400, 150); // sets size of frame 
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setVisible(true);
 
